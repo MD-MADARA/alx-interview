@@ -1,22 +1,23 @@
 #!/usr/bin/python3
-"""
-Min operations
+"""minoperations module
 """
 
 
 def minOperations(n):
-    if n <= 1:
-        return n
+    """minOperations is a method that calculates
+    the fewest number of operations needed to result
+    in exactly n H characters
 
-    operations = 0
-    clipboard = 1  # Initially, there is 1 H character in the clipboard
-    current_length = 1  # Length of the string initially
+    Args:
+        n (int): amount of H
 
-    while current_length < n:
-        if n % current_length == 0:
-            clipboard = current_length
-            operations += 1
-        operations += 1  # Paste operation
-        current_length += clipboard
-
-    return operations
+    Return:
+        minimum number of operations (an integer)
+    """
+    minOp, div = 0, 2
+    while isinstance(n, int) and n > 1:
+        while n % div:
+            div += 1
+        minOp += div
+        n = int(n / div)
+    return minOp
